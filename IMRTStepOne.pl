@@ -23,13 +23,19 @@ Getopt::Long::GetOptions(
 my $PatientDataBaseHome = "/pinnacle_patient_expansion/NewPatients/";
 my $SystemScriptHome = "/usr/local/adacnew/PinnacleSiteData/Scripts/IMRTcode/";
 my $BinHome = $SystemScriptHome."bin/";
-my $ScriptTempDir = $SystemScriptHome."temp/";
 my $BeamTemplate = $SystemScriptHome."BeamTemplate.txt";
 my $IMRTTemplate = $SystemScriptHome."IMRTTemplate.txt";
 
+my $ScriptTempDir = "/home/p3rtp/IMRTtemp/".$Cur_MRN;
+system("mkdir",$ScriptTempDir);
+system("chmod","u+rw",$ScriptTempDir);
 #temp file
-my $ROIList = $ScriptTempDir."ROI_List.txt";
-my $ROIListModify = $ScriptTempDir."ROI_Modify.txt";
+my $CurPatientInfo = $ScriptTempDir."/PatientInfo.log";
+my $Runninglog = $ScriptTempDir."/Runninglog.log";
+
+my $ROIList = $ScriptTempDir."ROI_List.temp";
+my $ROIListModify = $ScriptTempDir."ROI_Modify.temp";
+my $OptiObjectsList = $ScriptTempDir."OOL.temp";
 
 
 my $FIN_SCRIPT = "";
