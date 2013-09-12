@@ -7,8 +7,6 @@ use Switch;
 use Getopt::Long;
 use File::Copy;
 
-my $debug = 0;
-
 my $Cur_MRN = "";
 my $Cur_Name = "";
 my $Cur_Plan = "";
@@ -19,40 +17,48 @@ Getopt::Long::GetOptions(
     'p=s' => \$Cur_Plan,
     'l=s' => \$Pat_Data_Path);    
 
-##:define default directory path and default message
+##:define Main default dir
 my $PatientDataBaseHome = "/pinnacle_patient_expansion/NewPatients/";
 my $SystemScriptHome = "/usr/local/adacnew/PinnacleSiteData/Scripts/IMRTcode/";
-my $BinHome = $SystemScriptHome."bin/";
-my $BeamTemplate = $SystemScriptHome."BeamTemplate.txt";
-my $IMRTTemplate = $SystemScriptHome."IMRTTemplate.txt";
+my $ScriptTempDir = "/tmp/";
 
-my $ScriptTempDir = "/home/p3rtp/IMRTtemp/".$Cur_MRN;
+my $ScriptTempDir = $ScriptTempDir.$Cur_MRN;  #mkdir /tmp/123456
 system("mkdir",$ScriptTempDir);
 system("chmod","u+rw",$ScriptTempDir);
+
+##debug setting
+my $debug = 1;            #1 for debug
+my $FIN_SCRIPT = "";      #final p3rtp.script for Pinnacle running
+my $CurPlanRoiFile = "";  #roi file
+if($debug){
+    $PatientDataBaseHome = "/Users/apple/IMRTData/";
+    $SystemScriptHome = "/Users/apple/git/IMRT/";
+    $FIN_SCRIPT = $ScriptTempDir."/".$Cur_MRN."CurrentIMRTStepOne.Script.p3rtp";   
+    $CurPlanRoiFile =  $PatientDataBaseHome."Patient_11497/Plan_1/plan.roi";
+}else{
+    $FIN_SCRIPT = $ScriptTempDir.$Cur_MRN."CurrentIMRTStepOne.Script.p3rtp";
+    $CurPlanRoiFile =  $PatientDataBaseHome.$Pat_Data_Path."/plan.roi";
+};
+
+##define sub default Dir
+my $BinHome = $SystemScriptHome."bin/";
+my $BeamTemplate = $SystemScriptHome."Beam.Template";
+my $IMRTTemplate = $SystemScriptHome."IMRT.Template";
+
+
 #temp file
 my $CurPatientInfo = $ScriptTempDir."/PatientInfo.log";
 my $Runninglog = $ScriptTempDir."/Runninglog.log";
-
 my $ROIList = $ScriptTempDir."ROI_List.temp";
 my $ROIListModify = $ScriptTempDir."ROI_Modify.temp";
 my $OptiObjectsList = $ScriptTempDir."OOL.temp";
 
 
-my $FIN_SCRIPT = "";
-my $CurPlanRoiFile = "";
-if($debug){
-   $FIN_SCRIPT = $ScriptTempDir.$Cur_MRN."CurrentIMRTStepOne.Script.p3rtp";   
-   $CurPlanRoiFile =  $PatientDataBaseHome."Institution_1_bak/Mount_0/Patient_11497/Plan_1/plan.roi";
-}else{
-   $FIN_SCRIPT = $ScriptTempDir.$Cur_MRN."CurrentIMRTStepOne.Script.p3rtp";
-   $CurPlanRoiFile =  $PatientDataBaseHome.$Pat_Data_Path."/plan.roi";
-};
 ##:paln parameters define
 my $Globel_BeamNum = "";           #plan beam number
 my $Globel_PlanType = 0;           #0 - 6 type
 my @Globel_Prescriptions = (); 		#Prescription of One Fraction (180-200cGy)
 my @Globel_TargetNameList = ();		#Target name (PGTV,#0,PTV,#1)
-
 my @Globel_ROIList = ();
 my @Globel_ROIModifyList = ();		#Target name (0,PTV,TARGET)
 my $Globel_FractionNum = "";		#Fraction numbers(28F)
@@ -1101,43 +1107,33 @@ sub IMRTSetting{
 	print OUT "/* *H */\n";	
 	close(OUT);
 };
+
+##==================================
 ##:Main function Begin
+##==================================
 my $yyyymmdd = CurTime;
-if (-e $FIN_SCRIPT){
-	if ($debug){
-		move("$FIN_SCRIPT","/home/p3rtp/Backup/ScriptsTemp/temp/$yyyymmdd.script") ;
-	}else{
-		unlink($FIN_SCRIPT);
-	};	
-};
+
 ##:Step1  checking ROIS
 ROICheck($CurPlanRoiFile,$ROIList,$FIN_SCRIPT);
-
 ##:Step2  Create Target Ring and Nomal Tissue Area 
 CreatRingNT($ROIList,$ROIListModify,$FIN_SCRIPT);
-
 ##:Step3   Ask Physician input The BeamsNumber
 PlanBeamNum;
-
 ##:Step4   Ask Physican Input Discription of Plan
 PlanTypeDef;
-
 ##:Step5  Create Iso point which is the center of (PGTV/PTV)
 #CreateISOPoint($FIN_SCRIPT);
-
 ##:Step6  Create New Beams  and setting the equal weights
 #CreateBeams($BeamTemplate,$FIN_SCRIPT,$BeamNum);
 CreateBeams($FIN_SCRIPT);
-
 ##:Step7  Define Prescription,ISO dose line,
 DefinePrescriptionISODose($FIN_SCRIPT);
-
 ##:Step8  Mark displaying ROIs in DVH
 MarkDisplayRoiDVH($FIN_SCRIPT);
-
 ##:Step9  Set IMRT Parameters and Add target and OAR doselimition 
 IMRTSetting($FIN_SCRIPT);
 
+##programe End
 PerlEND:print "end of programe\n";
 
 
