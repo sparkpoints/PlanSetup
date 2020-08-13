@@ -60,12 +60,12 @@ Rectum	Max DVH	4000	85	1
 Rectum	Max EUD	4800	1
 Small.intestine	Max Dose	5150	1
 Small.intestine	Max DVH	4950	5	1
-Small.intestine	Max DVH	4000	15	1
+Small.intestine	Max DVH	4500	15	1
 Small.intestine	Max EUD	3500	1
 Bowel	Max DVH	4900	5	1
 Bowel	Max EUD	2500	1
-Femoral.head_L	Max DVH	4900	5	1
+Femoral.head_L	Max DVH	4300	5	1
 Femoral.head_L	Max EUD	3500	1
-Femoral.head_R	Max DVH	4900	5	1
+Femoral.head_R	Max DVH	4300	5	1
 Femoral.head_R	Max EUD	3500	1
 
