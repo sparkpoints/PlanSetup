@@ -49,23 +49,23 @@ TrialList.Current.CtToDensityName = "Philips_Body";
 //TrialList.Current.PatientRepresentation.CtToDensityTableAccepted = 1;
 
 //Dose computer Area 
-WindowList .CTSim .PanelList .#"#0" .GotoPanel = "FunctionLayoutIcon0";
-TrialList .Children .PatientRepresentation .OutsidePatientAirThreshold = " 0.6";
-TrialList .Current .ShowPatAirThreshold = "Display as ROI";
-RoiList.Last.MakeCurrent = "";
-RoiList.Current.Name = "DoseArea";
-IF.RoiList.ContainsObject.#"Patient".THEN.RoiList.ELSE.RoiList.Current.Name = "Patient";
+//WindowList .CTSim .PanelList .#"#0" .GotoPanel = "FunctionLayoutIcon0";
+//TrialList .Children .PatientRepresentation .OutsidePatientAirThreshold = " 0.6";
+//TrialList .Current .ShowPatAirThreshold = "Display as ROI";
+//RoiList.Last.MakeCurrent = "";
+//RoiList.Current.Name = "DoseArea";
+//IF.RoiList.ContainsObject.#"Patient".THEN.RoiList.ELSE.RoiList.Current.Name = "Patient";
 
-WindowList .ROIErodeDilate .Create = "Smooth Contours...";
-RoiList .Current .ErodeDilatePixelFraction = "4";
-RoiList .Current .ErodeDilate2d = "Erode/Dilate ROI";
-WindowList .RoiCleanupWindow .Create = "Clean ROI...";
-RoiList .Current .CurveMinArea = "100";
-RoiList .Current .Clean = "Rescan";
-RoiList .Current .CleanAndDelete = "Delete Curves";
-WindowList .RoiCleanupWindow .Unrealize = "Dismiss";
-TrialList.Current.ROICoverageMarginInCm = "0.6";
-TrialList.Current.AutoCoverROI = "OK";
+//WindowList .ROIErodeDilate .Create = "Smooth Contours...";
+//RoiList .Current .ErodeDilatePixelFraction = "4";
+//RoiList .Current .ErodeDilate2d = "Erode/Dilate ROI";
+//WindowList .RoiCleanupWindow .Create = "Clean ROI...";
+//RoiList .Current .CurveMinArea = "100";
+//RoiList .Current .Clean = "Rescan";
+//RoiList .Current .CleanAndDelete = "Delete Curves";
+//WindowList .RoiCleanupWindow .Unrealize = "Dismiss";
+//TrialList.Current.ROICoverageMarginInCm = "0.6";
+//TrialList.Current.AutoCoverROI = "OK";
 
 //ref.point adjusting
 WindowList.NewPoiSpreadsheet.Create = "POIButton";

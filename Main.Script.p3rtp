@@ -5,7 +5,7 @@ Store.FreeAt.HomeDir = "";
 Store.FreeAt.BinDir  = "";
 Store.FreeAt.SysTempDir = "";
 Store.At.HomeDir = SimpleString {};             //--Set Main dir contain all scripts
-Store.At.HomeDir.AppendString = "/usr/local/adacnew/PinnacleSiteData/Scripts/IMRTcode/";
+Store.At.HomeDir.AppendString = "/usr/local/adacnew/PinnacleSiteData/Scripts/IMRT_NPC/";
 //Store.At.BinDir = SimpleString {};              //--Set Perl Scripts dir
 //Store.At.BinDir.AppendString = Store.At.HomeDir.String;
 //Store.At.BinDir.AppendString = "bin/";
@@ -18,7 +18,7 @@ Store.FreeAt.TempInfoMessage = "";
 Store.At.TempInfoMessage = SimpleString{};
 Store.At.TempInfoMessage.AppendString = Store.At.HomeDir.String;
 Store.At.TempInfoMessage.AppendString = "RemoveEmptyROIs.Script.p3rtp";
-Script.ExecuteNow = Store.At.TempInfoMessage.String;
+//Script.ExecuteNow = Store.At.TempInfoMessage.String;
 Store.FreeAt.TempInfoMessage = "";
 
 //==========Checking! if this is a new plan ==========================================================

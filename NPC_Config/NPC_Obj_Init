@@ -1,0 +1,85 @@
+PGTV	Max Dose	7200	40
+PGTV	Uniform Dose	7030	2
+PGTV	Min DVH	6995	95	50
+PGTV	Min Dose	6950	50
+PGTVnd	Max Dose	7200	40
+PGTVnd	Uniform Dose	7030	2
+PGTVnd	Min DVH	6995	95	50
+PGTVnd	Min Dose	6950	50
+PTV1	Min DVH	6120	95	80
+PTV1	Min Dose	6070	180
+PTV1-(PGTV+PGTVnd)	Max Dose	6230	75
+PTV1-(PGTV+PGTVnd)	Uniform Dose	6180	2
+PTV2	Max Dose	6200	85
+PTV2	Uniform Dose	6050	2
+PTV2	Min DVH	6006	95	30
+PTV2	Min Dose	5950	60
+Len_L	Max Dose	690	20
+Len_L	Max EUD	0	1e-09
+Len_R	Max Dose	690	20
+Len_R	Max EUD	0	1e-09
+Brainstem_2mmPRV	Max Dose	4500	10
+Brainstem_2mmPRV	Max EUD	0	1e-09
+Opt.nerve_L_2mmPRV	Max Dose	5250	60
+Opt.nerve_L_2mmPRV	Max EUD	0	1e-09
+Opt.nerve_R_2mmPRV	Max Dose	5250	60
+Opt.nerve_R_2mmPRV	Max EUD	0	1e-09
+Opt.chiasm_2mmPRV	Max Dose	5250	60
+Opt.chiasm_2mmPRV	Max EUD	0	1e-09
+Parotid_L	Max DVH	2000	60	10
+Parotid_L	Max DVH	3000	40	10
+Parotid_L	Max EUD	0	1e-09
+Parotid_R	Max DVH	2000	60	10
+Parotid_R	Max DVH	3000	40	10
+Parotid_R	Max EUD	0	1e-09
+Temp.lobe_L	Max DVH	5500	5	5
+Temp.lobe_L	Max EUD	0	1e-09
+Temp.lobe_R	Max DVH	5500	5	5
+Temp.lobe_R	Max EUD	0	1e-09
+Temp.joint_L	Max DVH	5000	5	10
+Temp.joint_L	Max EUD	0	1e-09
+Temp.joint_R	Max DVH	5000	5	10
+Temp.joint_R	Max EUD	0	1e-09
+Mandible	Max DVH	5000	10	15
+Mandible	Max EUD	0	1e-09
+Larynx	Max DVH	4000	45	15
+Larynx	Max EUD	0	1e-09
+Trachea	Max DVH	4000	45	15
+Trachea	Max EUD	0	1e-09
+Esophagus	Max DVH	4000	50	10
+Esophagus	Max EUD	0	1e-09
+Cord_5mmPRV	Max Dose	4000	00
+Cord_5mmPRV	Max EUD	1750	1	20
+Cord	Max Dose	3500	20
+Cord	Max EUD	3000	0.5
+Ring_PGTV_03	Max Dose	6800	25
+Ring_PGTV_10	Max Dose	6300	40
+Ring_PTV_05	Max Dose	5700	20
+Ring_PTV_05	Max EUD	4500	0.5
+Ring_PTV_10	Max Dose	4900	20
+Ring_PTV_10	Max EUD	3200	0.5
+Ring_PTV_25	Max Dose	4100	20
+Ring_PTV_25	Max EUD	2650	0.5
+PTV1_Fan_Up	Max Dose	3800	30
+PTV1_Fan_Up	Max EUD	2400	0.5
+PTV1_Fan_Down	Max Dose	3800	30
+PTV1_Fan_Down	Max EUD	2000	0.5
+GTV	Min Dose	7040	50
+GTVnd	Min Dose	7040	50
+CTV1	Min Dose	6100	100
+CTV2	Min Dose	6060	100
+NT	Max Dose	4700	20
+NT	Max EUD	1000	0.5
+Cord_slice_05	Max Dose	4000	40
+Cord_slice_10	Max Dose	3700	20
+Cord_slice_20	Max Dose	3500	5
+Cord_slice_25	Max Dose	3000	5
+Brain_slice_05	Max Dose	5400	40
+Brain_slice_10	Max Dose	5100	20
+Brain_slice_20	Max Dose	4800	5
+Brain_slice_25	Max Dose	4500	5
+Mandible_slice_05	Max Dose	6000	10
+Mandible_slice_10	Max Dose	5800	20
+Opt_slice_05	Max Dose	5300	40
+Parotid_slice_05	Max Dose	6000	5
+Parotid_slice_05	Max Dose	5800	20

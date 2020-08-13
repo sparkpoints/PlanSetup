@@ -8,7 +8,7 @@ Store.FreeAt.TempExeFile = "";
 
 //Set Home Dir "Home/"
 Store.At.HomeDir = SimpleString {};
-Store.At.HomeDir.AppendString = "/usr/local/adacnew/PinnacleSiteData/Scripts/IMRTcode/";
+Store.At.HomeDir.AppendString = "/usr/local/adacnew/PinnacleSiteData/Scripts/IMRT_NPC/";
 //Set bin dir 
 Store.At.BinDir = SimpleString {};
 Store.At.BinDir.AppendString = Store.At.HomeDir.String;
@@ -17,7 +17,7 @@ Store.At.BinDir.AppendString = "bin/";
 Store.At.TempDir = SimpleString {};
 Store.At.TempDir.AppendString = Store.At.HomeDir.String;
 Store.At.TempDir.AppendString = "temp/";
-
+Echo=Store.At.TempDir.String;
 //WarningMessage = "perl scripts";
 
 //Step1:run "Lung_IMRT.perl" to Create Target PinnaScripts 
@@ -31,25 +31,28 @@ Store.At.TempCommand.AppendString = "\"";
 Store.At.TempCommand.AppendString = " -l \"";
 Store.At.TempCommand.AppendString = PlanInfo.PlanPath;
 Store.At.TempCommand.AppendString = "\"";
+Echo=Store.At.TempCommand.String;
 SpawnCommand = Store.At.TempCommand.String;
 Store.FreeAt.TempCommand = ""; 
 
 
 
 //run the target PinnScripts:"CurrentIMRTStepOne.Script.p3rtp"
+Store.FreeAt.TempExeFile = "";
 Store.At.TempExeFile = SimpleString {};
 Store.At.TempExeFile.AppendString = Store.At.TempDir.String;
 Store.At.TempExeFile.AppendString = PlanInfo.MedicalRecordNumber;
 Store.At.TempExeFile.AppendString = "CurrentIMRTStepOne.Script.p3rtp";
+Echo = Store.At.TempExeFile.String;
+ExecuteNow = Store.At.TempExeFile.String;
+//WaitMessage = "Running Scripts";
 
-WaitMessage = "Running Scripts";
-
-AskYesNoDefault = 1;
-AskYesNoPrompt = "Running This Script?";
-Store.FloatAt.TempCommand = AskYesNo;
-IF.Store.At.TempCommand.Value.THEN.Script.ExecuteNow = Store.At.TempExeFile.String;
-
-WaitMessageOff = "";
+//AskYesNoDefault = 1;
+//AskYesNoPrompt = "Running This Script?";
+//Store.FloatAt.TempCommand = AskYesNo;
+//IF.Store.At.TempCommand.Value.THEN.Script.ExecuteNow = Store.At.TempExeFile.String;
+Store.FreeAt.TempExeFile = "";
+//WaitMessageOff = "";
 //save plan data first
 //SavePlan = "Save Plan";
 
