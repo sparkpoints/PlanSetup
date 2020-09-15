@@ -1,11 +1,12 @@
 import os
 import argparse
 import configparser
+import logging
 from datetime import datetime 
 
-# # difine system base dir
-# PatientDataHome = "/pinnacle_patient_expansion/NewPatients/"
+# system config
 SystemConfigFile = "config.ini"
+PlanTemplateFile = "plantemplate.ini"
 # ScriptBinHome = SystemScriptHome + 'bin/'
 # ScriptTempDir = SystemScriptHome + 'tmp/'
 # ScriptLogDir = SystemScriptHome + 'log/'
@@ -13,6 +14,20 @@ SystemConfigFile = "config.ini"
 # # def config or template file
 # BeamTemplate = SystemScriptHome + 'BeamTemplate.txt'
 # IMRTTemplate = SystemScriptHome + 'IMrTTemplate.txt'
+
+#logger
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+logpath = "./log.log"
+fh = logging.FileHandler(logpath)
+fh.setLevel(logging.WARN)
+fmt = "%(asctime)-15s %(levelname)s %(filename)s %(lineno)d %(process)d %(message)s"
+datefmt = "%a %d %b %Y %H:%M:%S"
+formatter = logging.Formatter(fmt, datefmt)
+fh.setFormatter(formatter)
+logger.addHandler(fh)
+
+
 
 def digitaltimenow():
     return datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -43,6 +58,17 @@ if __name__ == "__main__":
     print(ScriptLogDir)
     print(config.sections())
     print(config.options('path'))
+
+    logger.debug('debug message')
+    logger.info('info message')
+    logger.warning('warn message')
+    logger.error('error message')
+    logger.critical('critical message')
+
+    config2 = configparser.ConfigParser()
+    config2.read(PlanTemplateFile,encoding='utf-8')
+    print(config2.sections())
+    print(config2.get('BEAMs','VMAT'))
 
 
 
