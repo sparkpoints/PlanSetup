@@ -1,12 +1,15 @@
 import os
+import re
+import ast
+import logging
 import argparse
 import configparser
-import logging
+
 from datetime import datetime 
 
 # system config
 SystemConfigFile = "config.ini"
-PlanTemplateFile = "plantemplate.ini"
+PlanTemplateFile = "NPC.ini"
 # ScriptBinHome = SystemScriptHome + 'bin/'
 # ScriptTempDir = SystemScriptHome + 'tmp/'
 # ScriptLogDir = SystemScriptHome + 'log/'
@@ -31,6 +34,17 @@ logger.addHandler(fh)
 
 def digitaltimenow():
     return datetime.now().strftime("%Y%m%d_%H%M%S")
+
+def ReadROIs(roifile):
+    with open(roifile,'r') as f:
+        roiNum = 0
+        for line in f:
+            if re.search('^           name:(.*)', line):
+                print(roiNum, line.strip('\n')[17:])
+                roiNum += 1
+
+
+
 
 if __name__ == "__main__":
     
@@ -68,7 +82,14 @@ if __name__ == "__main__":
     config2 = configparser.ConfigParser()
     config2.read(PlanTemplateFile,encoding='utf-8')
     print(config2.sections())
-    print(config2.get('BEAMs','VMAT'))
+    
+    list = ast.literal_eval(config2.get('OPTOBJs', 'OPTOBJs'))
+    type(list)
+    for data in list:
+        param = data.strip('\n').split(',')
+        print(len(param),param[-2])
+
+    ReadROIs('../temp/plan.roi')
 
 
 
