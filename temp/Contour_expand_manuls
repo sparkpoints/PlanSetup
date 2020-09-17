@@ -1,0 +1,30 @@
+ROI Expansion/Contraction details
+1, 	Source->0,
+	Avoid Interior->1,
+	Avoid Exterior->2
+2,	Uniform Margin->10 + 1Num(Margin number cm);
+	Variable Margin ->11 + 6Num(R,L,A,P,S,I)
+3,	20->Select ROI
+	21> Create new ROI,+ Name
+4,	Expand->30
+	Contract->31
+	Create Ring ROI->32
+	
+Exp1: PTV  expand 1cm  create PTV+1
+0	PTV	10	1	21	PTV+1	30
+
+Exp2: PTV1 plus PTV2 Expand 0 Create PTV1+PTV2
+0 PTV1 0 PTV2 10 0	21 PTV1+PTV2 30
+
+Exp3: PTV1 minus PGTV	Expand 0 Create PTV1-PGTV
+0 PTV1 1 PGTV 10 0 21 PTV1-PGTV	30
+
+Exp4: PTV1 minus PTV1+2.5 avoid Patient External 10 create Fan_up
+0 PTV1 1 PTV1+2.5 2 Patient 11 2.5 2.5 10 0 2.5 2.5 21 Fan_up 30
+
+
+====================生成辅助靶区流程=============
+1，遍历ROIList，获取当前已经勾画靶区，【序号位置，靶区名称】
+2，将NPC_Contour_List中的辅助假体名称添加到ROILIST中生成ROIModifyList
+3，生成一个{靶区名==》靶区位置}hash数组，利用名称来查找靶区位置
+4，解析NPC_Contour_List,产生辅助优化假体
